@@ -1,57 +1,62 @@
 import React from 'react';
+import contentful from '../api/contentful';
 import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
+  //const [articles, setArticles] = useState([]);
+  //const [errorMessage, setErrorMessage] = useState('');
+
   return (
     <View style={styles.backgroundStyle}>
       <View style={styles.headerStyle}>
-        <Text style={styles.textStyle}>Valiosos</Text>
+        <Text style={styles.headerTextStyle}>- - - - - - </Text>
       </View>
-      
-      <View style={styles.buttonStyle}>
-        <Button 
-          onPress={() => navigation.navigate('VisaTypes')}
-          title="Tipos de Visa"
-          color="#e69138ff"
-        />
-      </View>
+        <View style={styles.containerStyle}>
+          <View style={styles.containerButtonsStyle}>
 
-      <View style={styles.buttonStyle}>
-        <Button 
-          onPress={() => navigation.navigate('MigrantRights')}
-          title="Derechos de Migrantes"
-          color="#c27ba0ff"
-        />
-      </View>
+            <View>
+              <TouchableOpacity 
+                style={styles.buttonStyle}
+                onPress={() => navigation.navigate('VisaTypes')}>
+                <Text>Tipos de Visa</Text>
+              </TouchableOpacity>
+            </View>
 
-      <View style={styles.buttonStyle}>
-        <Button 
-          onPress={() => navigation.navigate('InmigrationRaid')}
-          title="Llegada de Inmigración"
-          color="#6aa84fff"
-        />
-      </View>
+            <View>
+              <TouchableOpacity 
+                style={styles.buttonStyle}
+                onPress={() => navigation.navigate('MigrantRights')}>
+                <Text>Tus Derechos</Text>
+              </TouchableOpacity>
+            </View>
 
-      <View style={styles.buttonStyle}>
-        <Button 
-          onPress={() => navigation.navigate('LegalContacts')}
-          title="Datos de contacto"
-          color="#6d9eebff"
-        />
-      </View>
+            <View>
+              <TouchableOpacity 
+                style={styles.buttonStyle}
+                onPress={() => navigation.navigate('InmigrationRaid')}>
+                <Text>Redadas / Arrestos </Text>
+              </TouchableOpacity>
+            </View>
 
-      <View style={styles.buttonStyle}>
-        <Button 
-          onPress={() => navigation.navigate('DomesticViolence')}
-          title="Violencia Doméstica"
-          color="#f1c232ff"
-        />
-      </View>
+            <View>
+              <TouchableOpacity 
+                style={styles.buttonStyle}
+                onPress={() => navigation.navigate('LegalContacts')}>
+                <Text>Contacto de Emergencia</Text>
+              </TouchableOpacity>
+            </View>
 
+            <View>
+              <TouchableOpacity 
+                style={styles.buttonStyle}
+                onPress={() => navigation.navigate('DomesticViolence')}>
+                <Text>Violencia Doméstica</Text>
+              </TouchableOpacity>
+            </View>
 
-
-
-
+            
+          </View>
+        </View>
     </View>
   );
 };
@@ -62,13 +67,29 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30
   },
+  headerTextStyle: {
+    fontSize: 25
+  },
   textStyle: {
     fontSize: 25
+  },
+  containerStyle: {
+    backgroundColor: '#cc0000ff',
+    borderRadius: 5,
+    marginLeft: 30,
+    marginRight: 30,
+  },
+  containerButtonsStyle: {
+    marginTop: 20,
   },
   buttonStyle: {
     marginBottom: 20,
     marginLeft: 50,
-    marginRight: 50
+    marginRight: 50,
+    backgroundColor: '#E68383',
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center'
   },  
   backgroundStyle: {
     flex: 1,
