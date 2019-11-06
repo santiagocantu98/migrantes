@@ -1,25 +1,17 @@
 import axios from 'axios';
 
-const space = 'o9fy17dex6yg'
-const accessToken = 'ZtJLoao563qDPhM76O7AGn9B7QT-3G0mhkVMNXlcIOg'
-const baseURL = 'https://cdn.contentful.com'
-const entryID = '5K2hnxJxztffuNGuI6AuHl'
 
-/*
 export default axios.create({
     baseURL: 'https://cdn.contentful.com',
-    space: 'o9fy17dex6yg',
-    accessToken: 'ZtJLoao563qDPhM76O7AGn9B7QT-3G0mhkVMNXlcIOg'
+    space: 'p9be4lbqo2ng',
+    accessToken: 'rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU'
 
 });
 
-*/
+
 // section
 
 
-axios.get(`${baseURL}/spaces/${space}/entries?access_token=${accessToken}`)
-.then((space) => console.log(space.data.items.fields))
-.catch(console.error)
 
 
 // content types

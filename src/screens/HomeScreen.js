@@ -1,100 +1,83 @@
 import React from 'react';
-import contentful from '../api/contentful';
-import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native';
+import useContentful from '../hooks/useContentful';
+import { Text, StyleSheet, View, FlatList, ScrollView, TouchableOpacity} from 'react-native';
+import RenderFlag from '../components/RenderFlag';
+import SectionDetail from '../components/SectionDetail'
+
 
 const HomeScreen = ({ navigation }) => {
-  //const [articles, setArticles] = useState([]);
-  //const [errorMessage, setErrorMessage] = useState('');
+  const [responses, assets, languages] = useContentful();
+  const suffix = "_es";
 
+  const filterByCurrentLanguage = () => {
+    if (languages.length > 1){
+      return languages.filter(language => {
+        if(language.fields.suffix === suffix)
+          return language.fields.suffix;
+      });
+    }
+  }
+  const filterTopicsByLanguage = (section) => {
+    return responses.filter(response => {
+      if (responses.length > 1){
+        if (response.sys.contentType.sys.id === `topic${suffix}` && response.fields.index === true) 
+          return response.sys.contentType.sys.id === `topic${suffix}` && response.fields.index === true;
+      }else return;
+    });
+  };
+
+  const filterByTopicsForIndex = () => {
+    
+  }
+  
+/*
+<SectionList 
+          responses = {filterTopicsByLanguage()}
+        />
+*/
   return (
-    <View style={styles.backgroundStyle}>
-      <View style={styles.headerStyle}>
-        <Text style={styles.headerTextStyle}>- - - - - - </Text>
-      </View>
-        <View style={styles.containerStyle}>
-          <View style={styles.containerButtonsStyle}>
-
-            <View>
-              <TouchableOpacity 
-                style={styles.buttonStyle}
-                onPress={() => navigation.navigate('VisaTypes')}>
-                <Text>Tipos de Visa</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View>
-              <TouchableOpacity 
-                style={styles.buttonStyle}
-                onPress={() => navigation.navigate('MigrantRights')}>
-                <Text>Tus Derechos</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View>
-              <TouchableOpacity 
-                style={styles.buttonStyle}
-                onPress={() => navigation.navigate('InmigrationRaid')}>
-                <Text>Redadas / Arrestos </Text>
-              </TouchableOpacity>
-            </View>
-
-            <View>
-              <TouchableOpacity 
-                style={styles.buttonStyle}
-                onPress={() => navigation.navigate('LegalContacts')}>
-                <Text>Contacto de Emergencia</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View>
-              <TouchableOpacity 
-                style={styles.buttonStyle}
-                onPress={() => navigation.navigate('DomesticViolence')}>
-                <Text>Violencia Doméstica</Text>
-              </TouchableOpacity>
-            </View>
-
-            
+    <>
+      <ScrollView>
+          <View style={styles.containerStyle}>
+              <FlatList
+                  numColumns = '2'
+                  scrollEnabled={false}
+                  data = {filterTopicsByLanguage()}
+                  keyExtractor={(response) => response.sys.id}
+                  renderItem = {({ item }) => {
+                  return (
+                      <TouchableOpacity onPress={() => navigation.navigate('Details', {
+                          responses: item}
+                      )}>
+                        <SectionDetail 
+                          response = {item}
+                          assets = {assets}
+                        /> 
+                      </TouchableOpacity>
+                  )
+                  }}
+              />
           </View>
-        </View>
-    </View>
+      </ScrollView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  headerStyle: {
-    alignItems: 'center',
-    marginTop: 30,
-    marginBottom: 30
-  },
-  headerTextStyle: {
-    fontSize: 25
-  },
-  textStyle: {
-    fontSize: 25
+  titleStyle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 15,
+    marginBottom: 5,
   },
   containerStyle: {
-    backgroundColor: '#cc0000ff',
-    borderRadius: 5,
-    marginLeft: 30,
-    marginRight: 30,
-  },
-  containerButtonsStyle: {
-    marginTop: 20,
-  },
-  buttonStyle: {
-    marginBottom: 20,
-    marginLeft: 50,
-    marginRight: 50,
-    backgroundColor: '#E68383',
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },  
-  backgroundStyle: {
-    flex: 1,
-    backgroundColor: '#f5f5f5'
+    marginTop: 100,
+    marginLeft: 40,
+    marginRight: 40,
+    alignItems: 'center',
+    justifyContent: 'space-between'
   }
+
 });
 
 export default HomeScreen;
