@@ -2,24 +2,15 @@ import contentful from '../api/contentful';
 import { useState, useEffect} from 'react';
 
 export default () => {
-    const space = 'p9be4lbqo2ng'
-    const accessToken = 'rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU'
-    const baseURL = 'https://cdn.contentful.com'
-    //const entryID = '5BPpnqodw2v1V2yGlTO9da'    
-
     const [responses, setResponses] = useState([]);
     const [assets,setAssests] = useState([]);
     const [languages,setLanguages] = useState([]);
     const [errorMessage,setErrorMessage] = useState('');
 
-    /*axios.get(`${baseURL}/spaces/${space}/environments/master/entries/${entryID}?access_token=${accessToken}`)
-    .then((entry) => console.log(entry))*/
-
-
     const getSections = async () => {
         try {
             const languages = await contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/entries?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU&content_type=languageLogo`);
-            const respuesta = await contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/entries?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU&content_type=topic_es&include=3`);
+            const respuesta = await contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/entries?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU&include=3`);
             const assets = await contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/assets?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU`);
             setLanguages(languages.data.items);
             setResponses(respuesta.data.items);

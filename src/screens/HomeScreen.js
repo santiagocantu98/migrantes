@@ -8,7 +8,6 @@ import SectionDetail from '../components/SectionDetail'
 const HomeScreen = ({ navigation }) => {
   const [responses, assets, languages] = useContentful();
   const suffix = "_es";
-
   const filterByCurrentLanguage = () => {
     if (languages.length > 1){
       return languages.filter(language => {
@@ -17,27 +16,20 @@ const HomeScreen = ({ navigation }) => {
       });
     }
   }
+
   const filterTopicsByLanguage = (section) => {
     return responses.filter(response => {
       if (responses.length > 1){
-        if (response.sys.contentType.sys.id === `topic${suffix}` && response.fields.index === true) 
+        if (response.sys.contentType.sys.id === `topic${suffix}` && response.fields.index === true){
           return response.sys.contentType.sys.id === `topic${suffix}` && response.fields.index === true;
+        }
       }else return;
     });
   };
 
-  const filterByTopicsForIndex = () => {
-    
-  }
-  
-/*
-<SectionList 
-          responses = {filterTopicsByLanguage()}
-        />
-*/
   return (
     <>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.containerStyle}>
               <FlatList
                   numColumns = '2'
@@ -47,7 +39,7 @@ const HomeScreen = ({ navigation }) => {
                   renderItem = {({ item }) => {
                   return (
                       <TouchableOpacity onPress={() => navigation.navigate('Details', {
-                          responses: item}
+                          entryID: item.sys.id}
                       )}>
                         <SectionDetail 
                           response = {item}

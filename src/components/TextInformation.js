@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, ScrollView, Text, StyleSheet } from 'react-native'
+import Hr from "react-native-hr-component";
 
 const TextInformation = ( {text} ) => {
     return(
@@ -17,8 +18,6 @@ const TextInformation = ( {text} ) => {
 const styles = StyleSheet.create({
     textContainerStyle:{
         margin: 5,
-        borderRadius: 3,
-        backgroundColor: '#ccccccff',
     },
     textBoxStyle: {
         margin: 10,

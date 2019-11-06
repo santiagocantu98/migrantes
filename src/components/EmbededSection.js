@@ -3,16 +3,18 @@ import { useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity} from 'react-native';
 import { withNavigation } from 'react-navigation'
 import contentful from '../api/contentful';
+import Hr from "react-native-hr-component";
 
 const EmbededSection = ({ responseID, navigation }) => {
     const [response, setResponse] = useState([])
     const [url, setURL] = useState('')
     let title = "";
     let imageID = "";
-    
-    //console.log(response.data)
+    var entryID = "";
     if(response.data != undefined) {
         title = response.data.fields.title
+        entryID = response.data.sys.id
+        console.log(entryID)
         imageID = response.data.fields.logo.sys.id
         var api = contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/assets/${imageID}?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU`)
         api.then(function(respuesta) { setURL(respuesta.data.fields.file.url) })
@@ -43,23 +45,13 @@ const EmbededSection = ({ responseID, navigation }) => {
 
     useEffect(() => {
         getResponses(response);
-    }, []);
+    }, [responseID]);
 
-/*
-
-    const filterLogoByRequest = (logoID) => {
-        for (i = 0; i < assets.length; i++) {
-
-            if (assets[i].sys.id === logoID)
-                return assets[i].fields.file.url
-        }
-    }
-    request = filterRequestByEntry()
-    const logoURL = filterLogoByRequest(logoID)
-*/
     return (
         <>
-            <TouchableOpacity onPress={() => navigation.navigate('Details')}>       
+            <TouchableOpacity onPress={() => navigation.navigate('Details', {
+                entryID: entryID
+            })}>  
                 <View style={styles.containerStyle}>
                         <View style={{flex: 0.35}}>
                             <Image 
@@ -75,6 +67,7 @@ const EmbededSection = ({ responseID, navigation }) => {
                             />
                         </View>
                 </View>
+                <Hr lineColor="#ccccccff" width={3} text="" />
             </TouchableOpacity>
         </>
     );
@@ -82,9 +75,7 @@ const EmbededSection = ({ responseID, navigation }) => {
 
 const styles = StyleSheet.create({
     containerStyle: {
-        marginTop: 5,
         flex: 1,
-        backgroundColor: '#ccccccff',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

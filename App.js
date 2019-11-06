@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import {Button} from 'react-native'
 import RenderFlag from './src/components/RenderFlag';
 import DetailsScreen from './src/screens/DetailsScreen'
+import { BlogProvider } from './src/context/BlogContext'
+import AppHeader from './src/components/AppHeader';
 
 const navigator = createStackNavigator(
   {
@@ -14,14 +16,14 @@ const navigator = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      title: 'XXXXX',
+    defaultNavigationOptions:  {
+      title: 'XXXXXX',
       headerTitleStyle: { 
         color: '#e3e3e3',
       },
       headerRight:  <RenderFlag />,
       headerStyle: {
-        backgroundColor:"#ffffff",
+        backgroundColor:"#ccccccff",
       }
     },
     headerLayoutPreset: 'center',
@@ -29,4 +31,10 @@ const navigator = createStackNavigator(
   }
 );
 
-export default createAppContainer(navigator);
+const App = createAppContainer(navigator);
+
+export default () => {
+  return <BlogProvider>
+          <App />
+        </BlogProvider>
+}
