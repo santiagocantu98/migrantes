@@ -19,13 +19,11 @@ export default () => {
             setErrorMessage('Something went wrong')
         }
     };
-    //https://cdn.contentful.com/spaces/o9fy17dex6yg/entries?access_token=ZtJLoao563qDPhM76O7AGn9B7QT-3G0mhkVMNXlcIOg        
-    //https://cdn.contentful.com/spaces/o9fy17dex6yg/content_types?access_token=ZtJLoao563qDPhM76O7AGn9B7QT-3G0mhkVMNXlcIOg
     
 
     useEffect(() => {
         getSections();
-    }, []);
+    }, [responses]);
 
     return [responses, assets, languages];
 };

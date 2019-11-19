@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, Header, Button, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation'
 
-const RenderFlag = () => {
+const RenderFlag = ({navigation}) => {
     return (
         <View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                 <Image   
                     style={styles.imageStyle}
-                    source={require('../../assets/IdiomaEspanol.png')}
+                    source={require('../../assets/back.png')}
                 />
             </TouchableOpacity>
         </View>     
@@ -16,9 +17,9 @@ const RenderFlag = () => {
 
 const styles = StyleSheet.create({
     imageStyle: {
-        width: 35,
-        height: 35,
-        marginRight: 5
+        width: 25,
+        height: 25,
+        marginRight: 10
 
     }
 });

@@ -30,19 +30,20 @@ const styles = StyleSheet.create({
     container: {
         width: 150,
         height: 150,
-        borderRadius: 15,
+        borderRadius: 7,
         margin: 6,
-        backgroundColor: '#ccccccff',
+        backgroundColor: '#f5f5f5',
         alignItems: "center",
         justifyContent: "flex-end"
     },
     imageStyle: {
-        width: 110,
-        height: 110,
+        width: 70,
+        height: 70,
         margin: 10
     },
     textStyle: {
-        marginBottom: 5,
+        marginBottom: 2,
+        fontSize: 18
     },
     name: {
         fontWeight: 'bold',

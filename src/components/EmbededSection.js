@@ -3,7 +3,6 @@ import { useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity} from 'react-native';
 import { withNavigation } from 'react-navigation'
 import contentful from '../api/contentful';
-import Hr from "react-native-hr-component";
 
 const EmbededSection = ({ responseID, navigation }) => {
     const [response, setResponse] = useState([])
@@ -12,46 +11,36 @@ const EmbededSection = ({ responseID, navigation }) => {
     let imageID = "";
     var entryID = "";
     if(response.data != undefined) {
-        title = response.data.fields.title
+        if(response.data.fields.title != undefined)
+            title = response.data.fields.title
         entryID = response.data.sys.id
-        console.log(entryID)
-        imageID = response.data.fields.logo.sys.id
+        if(response.data.fields.logo != undefined)
+            imageID = response.data.fields.logo.sys.id
         var api = contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/assets/${imageID}?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU`)
-        api.then(function(respuesta) { setURL(respuesta.data.fields.file.url) })
+        api.then(function(respuesta) { setURL(respuesta.data.fields.file.url) }).catch(function(errorMessage) { console.log(errorMessage) });    
     }
-
-    //console.log(response)
-    /*
-    const filterRequestByEntry = () => {
-        return requests.filter(request => { 
-            if (request.sys.id === sectionNameEntry.data.target.sys.id){
-                logoID = request.fields.logo.sys.id
-                requestTitle = request.fields.tituloDelContenido
-                return request.sys.id
-            }
-        })
-    }
-
-*/
-    const getResponses = async (response) => {
+    
+    const getResponses = async () => {
         try {
-            var api = await contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/entries/${responseID}?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU&include=3`)
-            setResponse(api)
+            var api = await contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/entries/${responseID}?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU`)
+                setResponse(api)
         } catch(err) {
-            console.log('Something went wrong')
+            console.log(err)
         }
     }
 
-
+    
     useEffect(() => {
-        getResponses(response);
-    }, [responseID]);
+        getResponses();
+    }, [response]);
 
     return (
         <>
             <TouchableOpacity onPress={() => navigation.navigate('Details', {
-                entryID: entryID
+                entryID: entryID,
+                title: title
             })}>  
+                <View style={{borderBottomColor: '#ccccccff', borderBottomWidth: 1}}></View>
                 <View style={styles.containerStyle}>
                         <View style={{flex: 0.35}}>
                             <Image 
@@ -63,11 +52,11 @@ const EmbededSection = ({ responseID, navigation }) => {
                         <View style={{flex: 0.15}}>
                             <Image 
                                 style={styles.imageNextStyle}
-                                source={require('../../assets/next.png')}
+                                source={require('../../assets/ArrowSiguiente.png')}
                             />
                         </View>
                 </View>
-                <Hr lineColor="#ccccccff" width={3} text="" />
+                <View style={{borderBottomColor: '#ccccccff', borderBottomWidth: 1}}></View>
             </TouchableOpacity>
         </>
     );
@@ -79,7 +68,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        borderRadius: 15
     },
     imageStyle: {
         width: 70,
@@ -92,6 +80,7 @@ const styles = StyleSheet.create({
         margin: 10
     },
     textStyle: {
+        color: '#666666ff',
         marginBottom: 5,
         fontWeight: 'bold',
         fontSize: 16,

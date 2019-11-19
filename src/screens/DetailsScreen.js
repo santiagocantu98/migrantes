@@ -1,101 +1,107 @@
 import React, { useContext } from 'react'
 import { View, Text, ScrollView, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { useState, useEffect} from 'react';
-import HomeScreen from './HomeScreen'
 import { withNavigation } from 'react-navigation'
 import contentful from '../api/contentful';
 import EmbededSection from '../components/EmbededSection'
 import TextInformation from '../components/TextInformation'
 import ImageInformation from '../components/ImageInformation'
+import MapLocation from '../components/MapLocation'
+import PhoneCall from '../components/PhoneCall'
+import {Linking} from 'react-native'
 import BlogContext from '../context/BlogContext'
-import { createStackNavigator, createAppContainer, createBottomTabNavigator, } from 'react-navigation';
 
 const DetailsScreen = ({ navigation }) => {
     const value = useContext(BlogContext)
     const [responses, setResponses] = useState()
-    const [url,setURL] = useState('')
+    const [url,setURL] = useState('');
     let content = [];
-    let title = "";
     let entryID = navigation.getParam('entryID')
-
-    DetailsScreen.navigationOptions = () => {
-        console.log(title)
-        return title;
-    }
-/*
-    if(responses != undefined) {
-
-    }
-*/  
-
+    let title = navigation.getParam('title')
     const getResponses = async (entryID) => {
         try {
             var api = await contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/entries/${entryID}?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU&include=3`)
             setResponses(api.data)
         } catch(err) {
-            console.log('Something went wrong')
+            console.log(err)
         }
     }
-
-
-    useEffect(() => {
-            getResponses(entryID)
-    }, [entryID]);
 
 
     if(responses != undefined) {
-        /*var api = contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/assets/${responses.fields.logo.sys.id}?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU`)
-        api.then(function(respuesta) { setURL(respuesta.data.fields.file.url) })
-        title = responses.fields.title;
-        */
-        for( i = 0; i < responses.fields.content.content.length; i++) {
-            if(responses.fields.content.content[i].nodeType === 'embedded-entry-block'){
-                if(responses.fields.content.content[i].data.target.sys.linkType === 'Entry') 
-                    content.push(<EmbededSection 
-                                    key={i}
-                                    responseID = {responses.fields.content.content[i].data.target.sys.id}
-                                />);
-            }
-            else if(responses.fields.content.content[i].nodeType === 'embedded-asset-block'){
-                    if(responses.fields.content.content[i].data.target.sys.linkType === 'Asset') {
-                        content.push(<ImageInformation 
+        console.log(responses)
+        if(responses.fields.content != undefined) {
+            for( i = 0; i < responses.fields.content.content.length; i++) {
+                if(responses.fields.content.content[i].nodeType === 'embedded-entry-block'){
+                    if(responses.fields.content.content[i].data.target.sys.linkType === 'Entry') 
+                        content.push(<EmbededSection 
                                         key={i}
-                                        imageID = {responses.fields.content.content[i].data.target.sys.id}    
-                                    />)
+                                        responseID = {responses.fields.content.content[i].data.target.sys.id}
+                                    />);
+                }
+                else if(responses.fields.content.content[i].nodeType === 'embedded-asset-block'){
+                        if(responses.fields.content.content[i].data.target.sys.linkType === 'Asset') {
+                            content.push(<ImageInformation 
+                                            key={i}
+                                            imageID = {responses.fields.content.content[i].data.target.sys.id}  
+                                            style={{flex: 1,height: 130, alignSelf: 'stretch'}}  
+                                        />)
+                        }
                     }
-                }
-                else if(responses.fields.content.content[i].nodeType === 'paragraph') {
-                    if(responses.fields.content.content[i].content[0].value != ""){
-                        content.push(<TextInformation 
-                                        key={i} 
-                                        text = {responses.fields.content.content[i].content[0].value} 
-                                    />
-                        );
-                    }          
-                }
+                    else if(responses.fields.content.content[i].nodeType === 'paragraph' | 
+                            responses.fields.content.content[i].nodeType === 'heading-1' | 
+                            responses.fields.content.content[i].nodeType === 'heading-2' |
+                            responses.fields.content.content[i].nodeType === 'heading-3' |
+                            responses.fields.content.content[i].nodeType === 'heading-4' |
+                            responses.fields.content.content[i].nodeType === 'heading-5' |
+                            responses.fields.content.content[i].nodeType === 'heading-6' |
+                            responses.fields.content.content[i].nodeType === 'text') {
+                                
+                        if(responses.fields.content.content[i].content[0].value != ""){
+                            content.push(<TextInformation 
+                                            key={i} 
+                                            text = {responses.fields.content.content[i]} 
+                                        />
+                            );
+                        }          
+                    
+                    }
+            }
+            
+            if(responses.fields.phoneNumber != undefined) {
+                content.push(<PhoneCall
+                                key={'phone'} 
+                                phoneNumber={responses.fields.phoneNumber}
+                                text={responses.fields.phoneButtonText}
+                            />)
+            }
         }
+
+        
+
+
     }
+ 
+
+    useEffect(() => {
+        getResponses(entryID)
+    }, [entryID]);
 
 
 
     return (
         <>
-            <ScrollView style={styles.contentStyle} showsVerticalScrollIndicator={false}>
-                <View style={styles.containerStyle}>
-                 {/*<View style={{flex: 0.35}}>
-                        <Image 
-                            style={styles.imageStyle}
-                            source={{ uri: `https:${url}`}}
-                        />
-                    </View>
-                    <View style={{flex: 0.30}}>
-                        <Text style={styles.textStyle}>{title}</Text>
-                    </View>
-                 */}
-                    
+            <ScrollView style={styles.backgroundStyle} showsVerticalScrollIndicator={false}>
+                <View style={styles.titleContainerStyle}>
+                    <Text style={styles.titleStyle}>{title}</Text>
                 </View>
-                <View style={{ backgroundColor: 'white'}}>
-                    {content}
+                <View style={styles.containerStyle}>
+                    {responses === undefined && 
+                        <Text> </Text>
+                    }
+                    {responses != undefined && 
+                        <View>{content}</View>
+                    }
                 </View>
                      
             </ScrollView>
@@ -113,15 +119,28 @@ const styles = StyleSheet.create({
         alignSelf: 'center',  
         alignContent: 'center',    
     },
-    contentStyle: {
+    titleStyle: {
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 24,
+        fontWeight: 'bold',
+      },
+    titleContainerStyle: {
         flex: 1,
-    },
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 80,
+        marginLeft: 40,
+        marginRight: 40,
+        alignItems: 'center',
+      },
     containerStyle: {
         flex: 1,
-        backgroundColor: '#ccccccff',
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderRadius: 15
+        marginTop: 20,
+        backgroundColor: 'white',
+        elevation: 5,
+        marginLeft: 20,
+        marginRight: 20,
     },
     textBoxStyle: {
         flexDirection: 'column', 
@@ -135,10 +154,11 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 5,
     },
+    backgroundStyle: {
+        backgroundColor: '#e06666ff'
+      }
 
 });
 
 
-
-
-export default DetailsScreen;
+export default withNavigation(DetailsScreen);
