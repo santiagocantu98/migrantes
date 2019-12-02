@@ -3,8 +3,9 @@ import { View,StyleSheet, Text } from 'react-native'
 import {Linking} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-
+// Receives the phone number and the text that is going to render in the green button
 const PhoneCall = ( { phoneNumber, text} ) => {
+    // renders a green button with text, if clicked, the phone app opens with the phone number
     return(
         <>
             <TouchableOpacity onPress={()=>{Linking.openURL(`tel:${phoneNumber}`);}} style={styles.funcNavText}>

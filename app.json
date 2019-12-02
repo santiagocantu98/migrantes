@@ -1,17 +1,16 @@
 {
   "expo": {
-    "name": "exmulti",
-    "slug": "exmulti",
+    "name": "catholic",
+    "slug": "catholic",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
       "android",
-      "web"
+      "web" 
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -21,10 +20,15 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/*"
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.lingonsaft.catholic",
+      "versionCode": 1,
+      "icon": "./assets/respect.png"
     }
   }
 }

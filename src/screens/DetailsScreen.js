@@ -1,23 +1,24 @@
-import React, { useContext } from 'react'
-import { View, Text, ScrollView, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import React from 'react'
+import { View, Text, ScrollView, StyleSheet} from 'react-native'
 import { useState, useEffect} from 'react';
 import { withNavigation } from 'react-navigation'
 import contentful from '../api/contentful';
 import EmbededSection from '../components/EmbededSection'
 import TextInformation from '../components/TextInformation'
 import ImageInformation from '../components/ImageInformation'
-import MapLocation from '../components/MapLocation'
+import BulletsText from '../components/BulletsText'
 import PhoneCall from '../components/PhoneCall'
-import {Linking} from 'react-native'
-import BlogContext from '../context/BlogContext'
 
 const DetailsScreen = ({ navigation }) => {
-    const value = useContext(BlogContext)
+    // Array that contains the contentful responses, whenever they change, it will re-render
     const [responses, setResponses] = useState()
-    const [url,setURL] = useState('');
+    // Map that contains an EmbedSection, ImageInformation, PhoneCall or TextInformation components
     let content = [];
+    // gets param of the entryID so it can make the request for that entry
     let entryID = navigation.getParam('entryID')
+    // gets param title of the selected topic
     let title = navigation.getParam('title')
+    // request to get the entry responses and set them in the array, it re-renders the component
     const getResponses = async (entryID) => {
         try {
             var api = await contentful.get(`https://cdn.contentful.com/spaces/p9be4lbqo2ng/entries/${entryID}?access_token=rawzjo4Gbf_NDfdtb9mu4lokewMOyOPT5twD1Q_QPHU&include=3`)
@@ -26,12 +27,13 @@ const DetailsScreen = ({ navigation }) => {
             console.log(err)
         }
     }
-
-
+    
+    // If it has any response, check if it has any content, and depending what type of content it is, call the component to render
     if(responses != undefined) {
-        console.log(responses)
         if(responses.fields.content != undefined) {
             for( i = 0; i < responses.fields.content.content.length; i++) {
+                // if it's a topic inside a topic
+                console.log(responses.fields.content.content[i])
                 if(responses.fields.content.content[i].nodeType === 'embedded-entry-block'){
                     if(responses.fields.content.content[i].data.target.sys.linkType === 'Entry') 
                         content.push(<EmbededSection 
@@ -39,6 +41,7 @@ const DetailsScreen = ({ navigation }) => {
                                         responseID = {responses.fields.content.content[i].data.target.sys.id}
                                     />);
                 }
+                // if it's an image inside a topic
                 else if(responses.fields.content.content[i].nodeType === 'embedded-asset-block'){
                         if(responses.fields.content.content[i].data.target.sys.linkType === 'Asset') {
                             content.push(<ImageInformation 
@@ -48,6 +51,16 @@ const DetailsScreen = ({ navigation }) => {
                                         />)
                         }
                     }
+                    
+                    else if(responses.fields.content.content[i].nodeType === 'unordered-list') {
+                                console.log(responses.fields.content.content[i])
+                                content.push(<BulletsText
+                                        key={i}
+                                        text = {responses.fields.content.content[i]}
+                                    />)
+                                }
+                
+                    // if it's any type of text inside a topic
                     else if(responses.fields.content.content[i].nodeType === 'paragraph' | 
                             responses.fields.content.content[i].nodeType === 'heading-1' | 
                             responses.fields.content.content[i].nodeType === 'heading-2' |
@@ -56,18 +69,18 @@ const DetailsScreen = ({ navigation }) => {
                             responses.fields.content.content[i].nodeType === 'heading-5' |
                             responses.fields.content.content[i].nodeType === 'heading-6' |
                             responses.fields.content.content[i].nodeType === 'text') {
+                            //if(responses.fields.content.content[i].content[0].value != ""){
                                 
-                        if(responses.fields.content.content[i].content[0].value != ""){
-                            content.push(<TextInformation 
-                                            key={i} 
-                                            text = {responses.fields.content.content[i]} 
-                                        />
-                            );
-                        }          
+                                content.push(<TextInformation 
+                                                key={i} 
+                                                text = {responses.fields.content.content[i]} 
+                                            />
+                                );
+                                     
                     
                     }
             }
-            
+            // if it's a phone number
             if(responses.fields.phoneNumber != undefined) {
                 content.push(<PhoneCall
                                 key={'phone'} 
@@ -82,13 +95,13 @@ const DetailsScreen = ({ navigation }) => {
 
     }
  
-
+    // renders the component only one time, and waits for entryID, if it changes, it re-renders
     useEffect(() => {
         getResponses(entryID)
     }, [entryID]);
 
 
-
+    // renders the title of the topic and the content inside of it
     return (
         <>
             <ScrollView style={styles.backgroundStyle} showsVerticalScrollIndicator={false}>
@@ -140,7 +153,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         elevation: 5,
         marginLeft: 20,
-        marginRight: 20,
+        marginRight:20,
+        
+        
     },
     textBoxStyle: {
         flexDirection: 'column', 

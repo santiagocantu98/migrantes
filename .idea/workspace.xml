@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2aa3881f-9371-4683-944d-4725105a4459" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Argentina.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ArrowNext.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ArrowNext.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ArrowSiguiente.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ArrowSiguiente.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Asistencia Legal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Asuntos Latinos.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Asuntos Migratorios.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Brazil.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Chile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Colombia.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Consejeria.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Consulados.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Contactos.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Costa Rica.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Detención.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Ecuador.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/El Salvador.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Estrés.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Guatemala.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Honduras.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Idioma Inglés.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/IdiomaEspanol.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Informate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Inmigración llegue a casa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Llamar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Mujeres Floreciendo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/México.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Oficinas.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Organizaciones.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Perú.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Plan Legal de Protección.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Redada.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Regresar Anterior.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/República Dominicana.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Servicio Inmigración y Naturalización.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Servicios Inmigración.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Servicios.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Talleres Educación.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Tipos de Visa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Ubicaciones Adicionales.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Uruguay.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Violencia Doméstica.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Volver a Inicio.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/asesoria.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/back.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/derechos.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/lenguajeFrancia.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/next.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/next.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BackButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BackButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EmbededSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EmbededSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ImageInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImageInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MapLocation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PhoneCall.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PhoneCall.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SectionDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SectionDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TextInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TextInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useContentful.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useContentful.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/DetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/DetailsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.js" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="953" />
+    <option name="width" value="973" />
+    <option name="height" value="1167" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.project.structure.last.selected" value="SDK Location" />
+    <property name="android.project.structure.proportion" value="0.15" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2aa3881f-9371-4683-944d-4725105a4459" name="Default Changelist" comment="" />
+      <created>1575251023331</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575251023331</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="953" y="0" width="973" height="1167" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32941177" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Resources Explorer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Captures" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Palette&#9;" />
+    </layout>
+  </component>
+</project>

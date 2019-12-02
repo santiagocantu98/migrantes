@@ -1,16 +1,22 @@
 import React, { useState} from 'react';
 import useContentful from '../hooks/useContentful';
-import { Text, StyleSheet, View, FlatList, ScrollView, TouchableOpacity, Image} from 'react-native';
+import { Text, StyleSheet, View, FlatList, ScrollView, TouchableOpacity} from 'react-native';
 import SectionDetail from '../components/SectionDetail'
 import {Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu';
 import ImageInformation from '../components/ImageInformation';
 
 const HomeScreen = ({ navigation }) => {
+  // calls the component api function and sets the data
   const [responses, assets, languages] = useContentful()
+  // sets the suffix "_es" so the default application language is spanish
   const [suffix, setSuffix] = useState('_es')
+  // map containing the menu of languages
   const languageOptions = []
+  // imageID variable to later identify the image
   let imageID = ""
 
+
+  // if there are any language push a menu with every language
   if (languages != undefined) {
     for(i = 0; i < languages.length; i++) {
       if(languages[i].fields.suffix === suffix){
@@ -32,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
     }
   }
   
-
+  // filters the Topics by language using the suffix of the Language Logo Content model in Contentful
   const filterTopicsByLanguage = (section) => {
     return responses.filter(response => {
       if (responses.length > 1){
@@ -43,6 +49,7 @@ const HomeScreen = ({ navigation }) => {
     });
   };
 
+  // renders a flag in the right corner representing the language, if clicked, it has a menu with other languages 
   return (
     <>
       <ScrollView style={styles.backgroundStyle} showsVerticalScrollIndicator={false}>
@@ -50,7 +57,7 @@ const HomeScreen = ({ navigation }) => {
           <Menu onSelect={value => setSuffix(value)}>
             <MenuTrigger>
                 <ImageInformation   
-                    style={{width: 25, height: 25, marginTop:10, marginLeft: 10}}
+                    style={{width: 35, height: 35, marginTop:10, marginLeft: 10}}
                     imageID={imageID}
                 />
             </MenuTrigger>
@@ -60,7 +67,7 @@ const HomeScreen = ({ navigation }) => {
           </Menu>
         </View>
         <View style={styles.titleContainerStyle}> 
-            <Text style={styles.titleStyle}>App Name</Text>
+            <Text style={styles.titleStyle}>Ayudami</Text>
         </View>
         <View style={styles.containerStyle}>
             <FlatList
@@ -97,6 +104,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     alignItems: 'center',
+    color: '#666666ff'
   },
   titleContainerStyle: {
     flexDirection: 'row',

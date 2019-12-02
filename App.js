@@ -1,15 +1,15 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomeScreen from './src/screens/HomeScreen';
-import { Image } from 'react-native';
-import React, { Component } from 'react';
+import React from 'react';
 import DetailsScreen from './src/screens/DetailsScreen'
 import { BlogProvider } from './src/context/BlogContext'
 import { MenuProvider } from 'react-native-popup-menu';
 import BackButton from './src/components/BackButton'
 
-
+// renders app
 const navigator = createStackNavigator(
   {
+    //HomeScreen
     Home: {
     screen: props => <HomeScreen {...props} />,
       navigationOptions: ({ navigation}) => ({
@@ -18,11 +18,21 @@ const navigator = createStackNavigator(
       
       
     },
+    // Topic screen
     Details: {
       screen: DetailsScreen,
       navigationOptions: ({ navigation}) => ({
         headerBackImage: <BackButton navigation={navigation}/>,
-        headerTransparent: true,
+        headerTransparent: {
+          headerTransparent: true,
+          position: 'absolute',
+          zindex: 100, 
+          top:0, 
+          left: 0, 
+          right:0
+        }
+        //headerTransparent: true,
+        
       })
     }
     

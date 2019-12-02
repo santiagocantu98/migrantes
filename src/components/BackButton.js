@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, Header, Button, TouchableOpacity } from 'react-native';
-import { withNavigation } from 'react-navigation'
+import { View, StyleSheet, Image,TouchableOpacity } from 'react-native';
 
+// receives navigation param so it can navigate to home screen
 const RenderFlag = ({navigation}) => {
+    // returns a back button image in the left corner that navigates to home
     return (
         <View>
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity onPress={() => navigation.goBack()} >
                 <Image   
                     style={styles.imageStyle}
                     source={require('../../assets/back.png')}

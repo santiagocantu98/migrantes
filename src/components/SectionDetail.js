@@ -1,18 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
+// Receives a single response and asset (logo)
 const SectionDetail = ({ response, assets }) => {
+    // finds the logo between all logos
     const sectionLogo = () => {
         for(i = 0; i < assets.length; i++) {
             if(assets[i].sys.id === response.fields.logo.sys.id) {
-                
                 return assets[i].fields.file.url    
             }
         
         }
     }
+    // gets the logo URL 
     logoURL = sectionLogo() 
 
+    // renders in home page the logo with the title of the response
     return (
         <>
             <View style={styles.container}>
@@ -43,7 +46,8 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         marginBottom: 2,
-        fontSize: 18
+        fontSize: 18,
+        color: '#666666ff'
     },
     name: {
         fontWeight: 'bold',
