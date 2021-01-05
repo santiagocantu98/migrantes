@@ -11,7 +11,7 @@
     "@contentful/axios": "^0.18.0",
     "@contentful/rich-text-react-renderer": "^13.4.0",
     "assert": "^2.0.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "contentful": "^7.10.0",
     "contentful-import": "^7.6.0",
     "expo": "^33.0.0",
